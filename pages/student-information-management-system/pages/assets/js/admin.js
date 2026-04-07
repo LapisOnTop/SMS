@@ -849,22 +849,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-// Security: Disable F12 and Developer Tools shortcuts, trigger Registrar Mode on F12
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'F12') {
-        e.preventDefault();
-        handleUserRegistrar();
-        return;
-    }
-    if (
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
-        (e.ctrlKey && e.key === 'U')
-    ) {
-        e.preventDefault();
-        console.warn("Developer Tools are disabled on this system.");
-    }
-});
-
-document.addEventListener('contextmenu', (e) => e.preventDefault());
-
+// Note: Removed F12 "registrar mode" and devtools-blocking handlers.

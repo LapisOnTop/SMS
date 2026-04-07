@@ -10,6 +10,29 @@ class StudentRepository
     {
     }
 
+    private function ensureStudentMediaColumns(): void
+    {
+        // Best-effort schema upgrade so SIM can store profile media.
+        // Safe to run repeatedly.
+        try {
+            $this->pdo->exec("ALTER TABLE students ADD COLUMN photo LONGBLOB NULL");
+        } catch (Throwable $e) {
+            // ignore (already exists or insufficient privileges)
+        }
+        try {
+            $this->pdo->exec("ALTER TABLE students ADD COLUMN signature LONGBLOB NULL");
+        } catch (Throwable $e) {
+            // ignore
+        }
+        try {
+            $this->pdo->exec("ALTER TABLE students ADD COLUMN contact_number VARCHAR(60) NULL");
+        } catch (Throwable $e) {
+            // ignore
+        }
+        // Reset cached column map so subsequent calls see newly-added columns.
+        $this->studentColumns = null;
+    }
+
     private function hasStudentColumn(string $column): bool
     {
         if (!is_array($this->studentColumns)) {
@@ -191,6 +214,7 @@ class StudentRepository
 
     public function insert(array $student): array
     {
+        $this->ensureStudentMediaColumns();
         $applicationId = isset($student['application_id']) ? (int) $student['application_id'] : 0;
         if ($applicationId <= 0) {
             throw new RuntimeException('application_id required');
@@ -227,7 +251,8 @@ class StudentRepository
                 throw new RuntimeException('Could not allocate student_id');
             }
 
-            $studentNumber = $yy . str_pad((string) $studentId, 7, '0', STR_PAD_LEFT);
+            // Desired format: YY + 6-digit sequence, e.g. 26 + 000007 = 26000007
+            $studentNumber = $yy . str_pad((string) $studentId, 6, '0', STR_PAD_LEFT);
 
             // Create or reuse a user account for the student so tracking/auth can map via student_number.
             $roleId = 1; // roles.role_id = 1 in seed sql => Student
@@ -310,6 +335,7 @@ class StudentRepository
 
     public function update(string $id, array $fields): ?array
     {
+        $this->ensureStudentMediaColumns();
         $existing = $this->getById($id);
         if (!$existing) {
             return null;
@@ -349,17 +375,12 @@ class StudentRepository
         $stmtMap->execute(['id' => $id]);
         $map = $stmtMap->fetch(PDO::FETCH_ASSOC);
         if ($map) {
-            if (isset($fields['email'])) {
-                if ($map['user_id']) {
-                    $uSql = "UPDATE users SET email = :email WHERE user_id = :uid";
-                    $uStmt = $this->pdo->prepare($uSql);
-                    $uStmt->execute(['email' => $fields['email'], 'uid' => $map['user_id']]);
-                }
-                if (!empty($map['application_id'])) {
-                    $uSql = "UPDATE applicant_contact SET email_address = :email WHERE application_id = :aid";
-                    $uStmt = $this->pdo->prepare($uSql);
-                    $uStmt->execute(['email' => $fields['email'], 'aid' => $map['application_id']]);
-                }
+            if (isset($fields['email']) && !empty($map['application_id'])) {
+                // users table does not have an email column in this project schema.
+                // Keep the source of truth in applicant_contact.
+                $uSql = "UPDATE applicant_contact SET email_address = :email WHERE application_id = :aid";
+                $uStmt = $this->pdo->prepare($uSql);
+                $uStmt->execute(['email' => $fields['email'], 'aid' => $map['application_id']]);
             }
             if (isset($fields['contactNumber']) && !empty($map['application_id'])) {
                 $uSql = "UPDATE applicant_contact SET contact_number = :c WHERE application_id = :aid";
@@ -371,17 +392,10 @@ class StudentRepository
                 $barangay = $parts[0] ?? '';
                 $city = $parts[1] ?? '';
                 $region = $parts[2] ?? '';
-                $gender = $parts[4] ?? '';
                 
                 $uSql = "UPDATE applicant_address SET barangay = :b, city = :c, region = :r WHERE application_id = :aid";
                 $uStmt = $this->pdo->prepare($uSql);
                 $uStmt->execute(['b' => $barangay, 'c' => $city, 'r' => $region, 'aid' => $map['application_id']]);
-                
-                if ($gender) {
-                    $uSql2 = "UPDATE applicant_personal_info SET sex = :s WHERE application_id = :aid";
-                    $uStmt2 = $this->pdo->prepare($uSql2);
-                    $uStmt2->execute(['s' => $gender, 'aid' => $map['application_id']]);
-                }
             }
         }
         

@@ -24,11 +24,12 @@ if (!isset($_SESSION['student_id'])) {
 
     <style>
         :root {
-            --sidebar-bg: #1e2532;
-            --active-blue: #2563eb;
-            --bg-light: #f3f4f6;
-            --text-dark: #1f2937;
+            --sidebar-bg: #f8fafc;
+            --active-blue: rgba(30, 37, 50, 0.12);
+            --bg-light: #eef2f7;
+            --text-dark: #1b2430;
             --text-gray: #6b7280;
+            --border: rgba(15, 23, 42, 0.10);
             --card-gold: #fbbf24;
             --success-green: #10b981;
             --danger-red: #ef4444;
@@ -43,55 +44,61 @@ if (!isset($_SESSION['student_id'])) {
 
         body {
             display: flex;
-            background-color: var(--bg-light);
+            background: linear-gradient(180deg, #e9eef6 0%, #eef2f7 100%);
+            color: var(--text-dark);
             min-height: 100vh;
         }
 
         /* --- Sidebar --- */
         .sidebar {
-            width: 260px;
+            width: 270px;
             background-color: var(--sidebar-bg);
-            color: #9ca3af;
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
-            padding: 20px 0;
+            padding: 18px 16px;
             flex-shrink: 0;
             height: 100vh;
             position: sticky;
             top: 0;
             overflow-y: auto;
+            border-right: 1px solid var(--border);
             animation: fadeInPage 0.3s ease-out;
         }
 
         .brand {
-            padding: 0 20px 30px;
-            color: white;
+            padding: 10px 10px 16px;
+            color: var(--text-dark);
             font-weight: 600;
             font-size: 1.1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: none;
             margin-bottom: 20px;
         }
 
         .menu-item {
-            padding: 12px 25px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.15s ease;
             font-size: 0.9rem;
             text-decoration: none;
-            color: #9ca3af;
+            color: #111827;
+            margin-bottom: 6px;
         }
 
         .menu-item:hover {
-            color: white;
+            background: rgba(2, 6, 23, 0.06);
+            color: #111827;
         }
 
         .menu-item.active {
             background-color: var(--active-blue);
-            color: white;
-            border-right: 4px solid var(--card-gold);
+            color: #1e2532;
+            font-weight: 600;
+            border-right: none;
         }
 
         .sidebar-footer {
@@ -754,9 +761,9 @@ if (!isset($_SESSION['student_id'])) {
 
             <div class="grid-row">
                 <div class="form-group" style="margin-bottom: 0;">
-                    <label class="form-label">Gender <span style="color: #ef4444;">*</span></label>
-                    <select class="form-input" id="gender" required>
-                        <option value="" disabled selected>Select Gender</option>
+                    <label class="form-label">Gender <span style="font-size: 0.8rem; color: #9ca3af;">(Read-only)</span></label>
+                    <select class="form-input read-only-field" id="gender" disabled>
+                        <option value="" disabled>Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
@@ -1051,7 +1058,8 @@ if (!isset($_SESSION['student_id'])) {
 
             // 2. Populate Form
             document.getElementById('studentNameDisplay').textContent = currentStudent.fullName;
-            document.getElementById('studentId').value = currentStudent.id;
+            // Show student number (e.g. 26000007) instead of internal numeric id.
+            document.getElementById('studentId').value = currentStudent.studentNumber || currentStudent.student_number || currentStudent.id;
             document.getElementById('fullName').value = currentStudent.fullName;
             document.getElementById('birthdate').value = currentStudent.birthdate;
 

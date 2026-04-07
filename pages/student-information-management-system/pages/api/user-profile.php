@@ -63,7 +63,6 @@ $last = trim((string) ($data['last_name'] ?? ''));
 $email = trim((string) ($data['email'] ?? ''));
 $contact = trim((string) ($data['contact_number'] ?? ''));
 $birthdate = trim((string) ($data['birthdate'] ?? ''));
-$gender = trim((string) ($data['gender'] ?? ''));
 $address = trim((string) ($data['address'] ?? ''));
 $city = trim((string) ($data['city'] ?? ''));
 $province = trim((string) ($data['province'] ?? ''));
@@ -72,6 +71,7 @@ $program = trim((string) ($data['program'] ?? ''));
 $yearLevel = trim((string) ($data['year_level'] ?? ''));
 $admissionDate = trim((string) ($data['admission_date'] ?? ''));
 $photoUrl = isset($data['photo_url']) ? (string) $data['photo_url'] : null;
+$genderEmpty = '';
 
 if ($first === '' || $last === '') {
     http_response_code(400);
@@ -107,7 +107,7 @@ $check->close();
 if ($exists) {
     $sql = 'UPDATE sims_students SET
         first_name = ?, middle_name = ?, last_name = ?, email = ?, contact_number = ?,
-        birthdate = ?, gender = ?, address = ?, city = ?, province = ?, zip_code = ?,
+        birthdate = ?, address = ?, city = ?, province = ?, zip_code = ?,
         program = ?, year_level = ?, admission_date = ?, photo_url = ?
         WHERE id = ?';
     $stmt = $db->prepare($sql);
@@ -117,14 +117,13 @@ if ($exists) {
         exit;
     }
     $stmt->bind_param(
-        'sssssssssssssssi',
+        'ssssssssssssssi',
         $first,
         $middle,
         $last,
         $email,
         $contact,
         $bdSql,
-        $gender,
         $address,
         $city,
         $province,
@@ -155,7 +154,8 @@ if ($exists) {
         $email,
         $contact,
         $bdSql,
-        $gender,
+        // Gender is read-only via UI; keep empty value on insert.
+        $genderEmpty,
         $address,
         $city,
         $province,
