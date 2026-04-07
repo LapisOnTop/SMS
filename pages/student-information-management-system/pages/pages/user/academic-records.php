@@ -21,15 +21,14 @@ if (!isset($_SESSION['student_id'])) {
 
     <style>
         :root {
-            --sidebar-bg: #f8fafc;
-            --active-blue: rgba(30, 37, 50, 0.12);
-            --bg-light: #eef2f7;
-            --text-dark: #1b2430;
+            --sidebar-bg: #1e2532;
+            --active-blue: #2563eb;
+            --bg-light: #f3f4f6;
+            --text-dark: #1f2937;
             --text-gray: #6b7280;
-            --border: rgba(15, 23, 42, 0.10);
             --card-gold: #fbbf24;
             --success-green: #10b981;
-            --danger-red: #ef4444;
+            --success-bg: #ecfdf5;
         }
 
         * {
@@ -41,34 +40,32 @@ if (!isset($_SESSION['student_id'])) {
 
         body {
             display: flex;
-            background: linear-gradient(180deg, #e9eef6 0%, #eef2f7 100%);
-            color: var(--text-dark);
+            background-color: var(--bg-light);
             min-height: 100vh;
         }
 
-        /* --- Sidebar --- */
+        /* --- Sidebar (reused) --- */
         .sidebar {
-            width: 270px;
+            width: 260px;
             background-color: var(--sidebar-bg);
-            color: var(--text-dark);
+            color: #9ca3af;
             display: flex;
             flex-direction: column;
-            padding: 18px 16px;
+            padding: 20px 0;
             flex-shrink: 0;
             height: 100vh;
             position: sticky;
             top: 0;
             overflow-y: auto;
-            border-right: 1px solid var(--border);
             animation: fadeInPage 0.3s ease-out;
         }
 
         .brand {
-            padding: 10px 10px 16px;
-            color: var(--text-dark);
+            padding: 0 20px 30px;
+            color: white;
             font-weight: 600;
             font-size: 1.1rem;
-            border-bottom: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 20px;
         }
 
@@ -82,29 +79,25 @@ if (!isset($_SESSION['student_id'])) {
         }
 
         .menu-item {
-            padding: 10px 12px;
+            padding: 12px 25px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-radius: 12px;
+            gap: 12px;
             cursor: pointer;
-            transition: 0.15s ease;
+            transition: 0.2s;
             font-size: 0.9rem;
             text-decoration: none;
-            color: #111827;
-            margin-bottom: 6px;
+            color: #9ca3af;
         }
 
         .menu-item:hover {
-            background: rgba(2, 6, 23, 0.06);
-            color: #111827;
+            color: white;
         }
 
         .menu-item.active {
             background-color: var(--active-blue);
-            color: #1e2532;
-            font-weight: 600;
-            border-right: none;
+            color: white;
+            border-right: 4px solid var(--card-gold);
         }
 
         /* --- Main Content --- */
