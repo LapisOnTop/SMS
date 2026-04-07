@@ -138,6 +138,13 @@ try {
     $pdo->exec('SET FOREIGN_KEY_CHECKS=1');
     echo "Successfully imported {$count} statements.\n";
 
+    // Fix Registrar1 password
+    echo "Fixing Registrar1 password...\n";
+    $hash = '$2y$10$lGf5BjZxPfKZkkJPZBaQAeb2q.OhMBMy1tA7qFWl8sl0OkSyyCWTm';
+    $stmt = $pdo->prepare("UPDATE users SET password_hash = ? WHERE username = 'Registrar1'");
+    $stmt->execute([$hash]);
+    echo "Registrar1 password set to 'Registrar1' successfully.\n";
+
     echo "\n<b>SETUP COMPLETE!</b> Please delete this file (railway_import_pdo.php) for security.\n";
 } catch (Throwable $e) {
     echo "\n<b style='color:red'>DATABASE ERROR:</b>\n" . htmlspecialchars($e->getMessage(), ENT_QUOTES) . "\n";
