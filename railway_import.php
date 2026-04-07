@@ -6,8 +6,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-// Report all mysqli errors as exceptions
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+// Report all mysqli errors as exceptions (if available on host)
+if (function_exists('mysqli_report')) {
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+}
 
 $host = getenv('MYSQLHOST') ?: 'localhost';
 $user = getenv('MYSQLUSER') ?: 'root';
@@ -20,6 +22,9 @@ echo "<pre>";
 echo "Attempting connection to: $user@$host:$port/$db\n";
 
 try {
+    if (!class_exists('mysqli')) {
+        throw new Exception("PHP extension 'mysqli' is not enabled on this host.");
+    }
     $mysqli = new mysqli();
     $mysqli->options(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
     $mysqli->real_connect($host, $user, $pass, $db, $port);
