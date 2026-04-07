@@ -1,0 +1,90 @@
+/* Enrollment Status Section Styles */
+
+.action-buttons {
+	display: flex;
+	gap: 10px;
+}
+
+.action-btn {
+	padding: 8px 14px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	transition: all 0.2s ease;
+	white-space: nowrap;
+}
+
+.send-btn {
+	background: linear-gradient(135deg, #4caf50, #45a049);
+	color: white;
+}
+
+.send-btn:hover {
+	background: linear-gradient(135deg, #45a049, #3d8b40);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.status-badge {
+	padding: 6px 12px;
+	border-radius: 20px;
+	font-size: 0.85rem;
+	font-weight: 600;
+	text-align: center;
+	display: inline-block;
+}
+
+.status-approved {
+	background: #e8f5e9;
+	color: #2e7d32;
+}
+
+.status-validated {
+	background: #e3f2fd;
+	color: #1565c0;
+}
+
+/* Keep enrollment filters in one row (status, search, button). */
+#enrollment-status .filter-section {
+	display: grid;
+	grid-template-columns: minmax(180px, 240px) minmax(320px, 1fr) auto;
+	gap: 12px;
+	align-items: center;
+	overflow-x: auto;
+}
+
+#enrollment-status #enrollmentStatusFilter {
+	width: 100%;
+}
+
+#enrollment-status #enrollmentSearchInput {
+	width: 100%;
+	min-width: 320px;
+}
+
+#enrollment-status .filter-section button {
+	white-space: nowrap;
+}
+
+/* Center table content for enrollment status records. */
+#enrollment-status table th,
+#enrollment-status table td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+#enrollment-status td .status-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (max-width: 1024px) {
+	#enrollment-status .filter-section {
+		grid-template-columns: minmax(160px, 220px) minmax(240px, 1fr) auto;
+	}
+}

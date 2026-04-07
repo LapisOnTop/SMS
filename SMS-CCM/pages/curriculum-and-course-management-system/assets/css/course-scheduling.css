@@ -1,0 +1,401 @@
+/* ===================== COURSE SCHEDULING STYLES ===================== */
+
+/* ===================== PAGE HEADER ===================== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.program-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.program-selector label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.program-dropdown {
+    padding: 10px 16px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 300px;
+}
+
+.program-dropdown:hover {
+    border-color: var(--primary-blue);
+}
+
+.program-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(63, 105, 255, 0.1);
+}
+
+/* ===================== SCHEDULING CONTAINER ===================== */
+.scheduling-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ===================== SEMESTER SECTION ===================== */
+.semester-section {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-gray);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.semester-header {
+    background: var(--primary-dark);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.semester-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.semester-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.units-badge {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ===================== SUBJECTS LIST ===================== */
+.subjects-list {
+    padding: 16px 24px;
+    min-height: 100px;
+}
+
+.list-header {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px 150px;
+    gap: 16px;
+    padding: 12px 16px;
+    background: var(--light-blue-bg);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.col-subject,
+.col-description,
+.col-units,
+.col-action {
+    display: flex;
+    align-items: center;
+}
+
+.col-units {
+    justify-content: center;
+}
+
+/* ===================== SUBJECT ITEM ===================== */
+.subject-item {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px 150px;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: grab;
+    user-select: none;
+}
+
+.subject-item:hover {
+    background: var(--light-blue-bg);
+    border-color: var(--primary-blue);
+    box-shadow: 0 2px 8px rgba(63, 105, 255, 0.1);
+}
+
+.subject-item.dragging {
+    opacity: 0.5;
+    background: var(--border-gray);
+}
+
+.subject-item.drag-over {
+    background: rgba(63, 105, 255, 0.1);
+    border-color: var(--primary-blue);
+    border-width: 2px;
+}
+
+.subject-item .col-subject {
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+.subject-item .col-description {
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.subject-item .col-units {
+    justify-content: center;
+    font-weight: 600;
+    color: var(--warning-orange);
+    background: rgba(245, 158, 11, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.move-dropdown {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--text-light);
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.move-dropdown:hover {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.move-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(63, 105, 255, 0.1);
+}
+
+/* ===================== EMPTY STATE ===================== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    color: var(--text-light);
+    gap: 12px;
+}
+
+.empty-state i {
+    font-size: 48px;
+    opacity: 0.3;
+}
+
+.empty-state p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ===================== MESSAGE TOAST ===================== */
+.message-toast {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2000;
+    animation: slideUp 0.3s ease;
+    max-width: 400px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.message-toast.show {
+    display: block;
+}
+
+.message-toast.success {
+    border-left: 4px solid var(--success-green);
+    color: var(--success-green);
+}
+
+.message-toast.error {
+    border-left: 4px solid var(--error-red);
+    color: var(--error-red);
+}
+
+.message-toast.info {
+    border-left: 4px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1200px) {
+    .list-header {
+        grid-template-columns: 100px 1fr 70px 120px;
+    }
+
+    .subject-item {
+        grid-template-columns: 100px 1fr 70px 120px;
+    }
+
+    .program-dropdown {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .program-selector {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .program-dropdown {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .semester-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .semester-header h2 {
+        font-size: 14px;
+    }
+
+    .list-header {
+        grid-template-columns: 80px 1fr 60px 100px;
+        padding: 10px 12px;
+        font-size: 11px;
+        gap: 8px;
+    }
+
+    .subject-item {
+        grid-template-columns: 80px 1fr 60px 100px;
+        padding: 10px 12px;
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .subject-item .col-subject {
+        font-size: 13px;
+    }
+
+    .subject-item .col-description {
+        font-size: 12px;
+    }
+
+    .move-dropdown {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+
+    .subjects-list {
+        padding: 12px 16px;
+    }
+
+    .semester-section {
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .list-header,
+    .subject-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .list-header {
+        display: none;
+    }
+
+    .subject-item {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .subject-item::before {
+        content: attr(data-label);
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-light);
+        display: block;
+    }
+
+    .col-subject,
+    .col-description,
+    .col-units,
+    .col-action {
+        width: 100%;
+    }
+
+    .col-units {
+        justify-content: flex-start;
+    }
+
+    .move-dropdown {
+        width: 100%;
+    }
+
+    .message-toast {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .scheduling-container {
+        gap: 16px;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

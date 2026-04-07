@@ -1,0 +1,425 @@
+/* ================================================================
+   SMS — Class Scheduling & Section Management
+   FILE: assets/css/components.css
+   Design: 1-to-1 from Student Information Management System
+   ================================================================ */
+
+/* ════════════════════════════════════════════════════════════
+   BUTTONS — exact from SIM
+   ════════════════════════════════════════════════════════════ */
+.btn {
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font);
+    white-space: nowrap;
+    line-height: 1;
+    text-decoration: none;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-primary  { background-color: var(--active-blue); color: white; }
+.btn-primary:hover { background-color: #1d4ed8; }
+
+.btn-ghost    { background-color: #e5e7eb; color: var(--text-dark); }
+.btn-ghost:hover { background-color: #d1d5db; }
+
+.btn-danger   { background-color: var(--red-pale);    color: var(--red);    border: 1px solid var(--red-border); }
+.btn-danger:hover { background-color: #fee2e2; }
+
+.btn-success  { background-color: var(--green-pale);  color: var(--green);  border: 1px solid var(--green-border); }
+.btn-success:hover { background-color: #d1fae5; }
+
+.btn-teal     { background-color: var(--teal-pale);   color: var(--teal);   border: 1px solid var(--teal-border); }
+.btn-teal:hover { background-color: #e0f2fe; }
+
+.btn-secondary {
+    background: white; color: var(--text-dark);
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.btn-secondary:hover { background: var(--gray-50); border-color: var(--gray-300); }
+
+.btn-sm { padding: 7px 14px; font-size: 0.82rem; }
+.btn-lg { padding: 13px 26px; font-size: 0.95rem; }
+
+/* exact from SIM */
+.btn-group { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+
+/* ════════════════════════════════════════════════════════════
+   STAT CARDS
+   ════════════════════════════════════════════════════════════ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px; margin-bottom: 24px;
+}
+.stat-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    position: relative; overflow: hidden;
+    transition: 0.2s;
+    /* exact from SIM .form-container */
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    border: 1px solid var(--gray-200);
+}
+.stat-card::after {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background: var(--accent-color, var(--active-blue));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-card .label {
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.7px;
+    color: var(--text-gray); margin-bottom: 10px;
+}
+.stat-card .value { font-size: 2rem; font-weight: 600; color: var(--text-dark); line-height: 1; margin-bottom: 6px; }
+.stat-card .sub   { font-size: 0.78rem; color: var(--text-gray); display: flex; align-items: center; gap: 5px; }
+.stat-card .sub .up   { color: var(--green); font-weight: 500; }
+.stat-card .sub .down { color: var(--red);   font-weight: 500; }
+.stat-card .icon-bg   { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:2.5rem; opacity:0.07; pointer-events:none; }
+
+/* ════════════════════════════════════════════════════════════
+   CARD / PANEL — exact from SIM .form-container
+   ════════════════════════════════════════════════════════════ */
+.card {
+    background: white;
+    padding: 0;
+    border-radius: var(--radius-lg);
+    /* exact from SIM */
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--gray-200);
+}
+.card-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    background: white;
+}
+.card-header h2 {
+    font-size: 1rem; font-weight: 600; color: var(--text-dark);
+    display: flex; align-items: center; gap: 8px;
+}
+.card-header h2 .chip {
+    font-size: 0.7rem; font-weight: 600;
+    background: var(--blue-pale); color: var(--active-blue);
+    padding: 2px 8px; border-radius: 20px;
+    border: 1px solid var(--blue-border);
+}
+.card-tools { display: flex; gap: 8px; align-items: center; }
+
+/* ════════════════════════════════════════════════════════════
+   FILTER BAR
+   ════════════════════════════════════════════════════════════ */
+.filter-bar {
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    background: var(--gray-50);
+}
+
+/* exact from SIM .semester-select / .form-input */
+.filter-select, .filter-input, .semester-select {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-sm);
+    color: var(--text-dark);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    outline: none;
+    transition: 0.2s;
+    min-width: 120px;
+}
+.filter-select:focus, .filter-input:focus, .semester-select:focus {
+    border-color: var(--active-blue);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* ════════════════════════════════════════════════════════════
+   TABLE — exact from SIM .grades-table
+   ════════════════════════════════════════════════════════════ */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: var(--gray-50); }
+thead th {
+    padding: 10px 20px; text-align: left;
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--text-gray); text-transform: uppercase;
+    letter-spacing: 0.6px; border-bottom: 1px solid var(--gray-200);
+    white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--gray-100); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--gray-50); }
+td { padding: 12px 20px; font-size: 0.88rem; color: var(--text-dark); vertical-align: middle; }
+td.muted { color: var(--text-gray); }
+td.mono  { font-family: var(--font-mono, monospace); font-size: 0.78rem; color: var(--active-blue); font-weight: 600; }
+
+tfoot tr { background-color: #f3f4f6; font-weight: 600; }
+tfoot td { padding: 10px 20px; font-size: 0.88rem; }
+
+.table-footer {
+    padding: 12px 24px;
+    border-top: 1px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.82rem; color: var(--text-gray);
+    background: var(--gray-50);
+}
+.pagination { display: flex; gap: 4px; }
+.pag-btn {
+    width: 30px; height: 30px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    background: white; border: 1px solid var(--gray-200);
+    color: var(--text-gray); cursor: pointer; font-size: 0.8rem; transition: 0.2s;
+}
+.pag-btn:hover  { background: var(--blue-pale); border-color: var(--blue-border); color: var(--active-blue); }
+.pag-btn.active { background: var(--active-blue); border-color: var(--active-blue); color: white; }
+
+/* ════════════════════════════════════════════════════════════
+   BADGES
+   ════════════════════════════════════════════════════════════ */
+.badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 500; white-space: nowrap;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+.badge-green  { background: var(--green-pale);  color: #065f46; border: 1px solid var(--green-border); }
+.badge-red    { background: var(--red-pale);    color: #991b1b; border: 1px solid var(--red-border);   }
+.badge-amber  { background: var(--yellow-pale); color: #92400e; border: 1px solid var(--yellow-border);}
+.badge-teal   { background: var(--teal-pale);   color: #0e7490; border: 1px solid var(--teal-border);  }
+.badge-blue   { background: var(--blue-pale);   color: var(--active-blue); border: 1px solid var(--blue-border); }
+.badge-purple { background: var(--purple-pale); color: #5b21b6; border: 1px solid var(--purple-border);}
+.badge-gray   { background: var(--gray-100);    color: var(--text-gray); border: 1px solid var(--gray-200); }
+
+/* status-tag (from SIM) */
+.status-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 500;
+    background-color: var(--green-pale); color: var(--green);
+}
+
+/* ════════════════════════════════════════════════════════════
+   ROW ACTIONS
+   ════════════════════════════════════════════════════════════ */
+.row-actions { display: flex; gap: 6px; align-items: center; }
+.act-btn {
+    width: 30px; height: 30px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 0.85rem;
+    border: 1px solid var(--gray-200); background: white;
+    color: var(--text-gray); transition: 0.2s;
+}
+.act-btn.view:hover  { background: var(--blue-pale);   border-color: var(--blue-border);   color: var(--active-blue); }
+.act-btn.edit:hover  { background: var(--yellow-pale); border-color: var(--yellow-border); color: var(--yellow); }
+.act-btn.del:hover   { background: var(--red-pale);    border-color: var(--red-border);    color: var(--red); }
+
+/* ════════════════════════════════════════════════════════════
+   MODAL — exact from SIM achievements-modal / enlarge-overlay style
+   ════════════════════════════════════════════════════════════ */
+.modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 500; display: none;
+    align-items: center; justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.modal-overlay.open { display: flex; opacity: 1; }
+
+.modal {
+    background: white;
+    border-radius: var(--radius-xl);
+    width: 100%; max-width: 500px;
+    /* exact from SIM modal-card */
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    animation: modalIn 0.3s cubic-bezier(0.4,0,0.2,1);
+    overflow: hidden;
+    transform: translateY(0) scale(1);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes modalIn {
+    from { opacity:0; transform: scale(0.95) translateY(20px); }
+    to   { opacity:1; transform: none; }
+}
+.modal-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: space-between;
+    /* exact from SIM modal header */
+    border-bottom: 1px solid #f3f4f6; padding-bottom: 15px;
+}
+.modal-header h3 {
+    font-size: 1.1rem; font-weight: 600; color: var(--text-dark);
+    display: flex; align-items: center; gap: 10px;
+}
+.modal-close {
+    background: #f3f4f6; width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.2s; border: none;
+    color: var(--text-gray); font-size: 14px;
+}
+.modal-close:hover { background: #e5e7eb; }
+.modal-body   { padding: 24px; }
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gray-200);
+    display: flex; gap: 10px; justify-content: flex-end;
+    background: var(--gray-50);
+}
+
+/* ════════════════════════════════════════════════════════════
+   FORMS — exact from SIM .form-group .form-label .form-input
+   ════════════════════════════════════════════════════════════ */
+.form-grid      { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid.full { grid-template-columns: 1fr; }
+
+/* exact from SIM .form-group */
+.form-group { margin-bottom: 20px; }
+.form-group.span2 { grid-column: 1 / -1; }
+
+/* exact from SIM .form-label */
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+.form-label .req { color: var(--red); margin-left: 2px; }
+
+/* exact from SIM .form-input */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-sm);
+    background-color: #f9fafb;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    font-family: var(--font);
+    color: var(--text-dark);
+    outline: none;
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--active-blue);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.form-control::placeholder { color: var(--gray-400); }
+.form-control option { background: white; }
+
+/* exact from SIM readonly/disabled */
+.form-control[readonly],
+.form-control:disabled {
+    background-color: #e5e7eb;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.form-hint  { font-size: 0.78rem; color: var(--gray-400); margin-top: 4px; }
+.form-error { font-size: 0.78rem; color: var(--red); margin-top: 4px; }
+.form-info  {
+    margin-top: 10px; padding: 10px 12px;
+    background: #eff6ff; border: 1px solid var(--blue-border);
+    border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--active-blue);
+    display: flex; align-items: flex-start; gap: 7px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TOAST — minimal
+   ════════════════════════════════════════════════════════════ */
+.toast-container {
+    position: fixed; bottom: 24px; right: 24px;
+    z-index: 1000; display: flex; flex-direction: column; gap: 8px;
+}
+.toast {
+    background: white; border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 12px 16px;
+    display: flex; align-items: flex-start; gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+    min-width: 250px; max-width: 340px;
+    animation: toastIn 0.25s ease forwards; font-size: 0.88rem;
+}
+.toast.success { border-left: 4px solid var(--green); }
+.toast.error   { border-left: 4px solid var(--red);   }
+.toast.warning { border-left: 4px solid var(--yellow); }
+.toast.info    { border-left: 4px solid var(--active-blue); }
+@keyframes toastIn  { from { opacity:0; transform:translateY(8px) scale(.97); } to { opacity:1; transform:none; } }
+@keyframes toastOut { to   { opacity:0; transform:translateX(12px) scale(.97); } }
+.toast-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.toast-text strong { display:block; color:var(--text-dark); font-weight:600; margin-bottom:2px; font-size:0.88rem; }
+.toast-text span   { color:var(--text-gray); line-height:1.45; font-size:0.82rem; }
+
+/* ════════════════════════════════════════════════════════════
+   UTILITIES
+   ════════════════════════════════════════════════════════════ */
+.divider { height: 1px; background: var(--gray-200); margin: 16px 0; }
+
+.empty { padding: 40px 20px; text-align: center; color: var(--text-gray); }
+.empty .ei { font-size: 3rem; margin-bottom: 16px; opacity: 0.4; display: block; }
+.empty h3  { font-size: 1rem; color: var(--text-dark); font-weight: 600; margin-bottom: 8px; }
+.empty p   { font-size: 0.88rem; max-width: 400px; margin: 0 auto 20px; line-height: 1.5; }
+
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:500; background:var(--gray-100); color:var(--text-gray); border:1px solid var(--gray-200); }
+.section-chip { display:inline-flex; align-items:center; padding:3px 9px; border-radius:4px; background:var(--blue-pale); color:var(--active-blue); font-size:0.78rem; font-weight:600; border:1px solid var(--blue-border); }
+
+/* summary card (SIM pattern) */
+.summary-card {
+    background: white; border-radius: var(--radius-lg);
+    padding: 20px 24px; margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    border: 1px solid var(--gray-200);
+}
+.summary-item { display: flex; align-items: center; gap: 12px; }
+.summary-text p { font-size: 0.8rem; color: var(--text-gray); margin-bottom: 2px; }
+.summary-text h3 { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); }
+.icon-box {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+}
+.icon-blue { background: var(--blue-pale); color: var(--active-blue); }
+.icon-gold { background: #fef3c7; color: #d97706; }
+
+/* Dashboard grids */
+.dash-grid       { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.dash-grid.three { grid-template-columns: repeat(3,1fr); }
+
+/* Activity feed */
+.mini-activity { display: flex; flex-direction: column; max-height: 270px; overflow-y: auto; }
+.activity-item { display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--gray-100); }
+.activity-item:last-child { border-bottom: none; }
+.act-dot  { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+.act-text { font-size:0.85rem; color:var(--text-gray); line-height:1.45; }
+.act-text strong { color:var(--text-dark); font-weight:500; }
+.act-time { font-size:0.75rem; color:var(--gray-400); margin-top:2px; }
+
+/* Controls row (SIM pattern) */
+.controls { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+
+@media (max-width:900px) {
+    .dash-grid, .dash-grid.three { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:560px) { .stats-grid { grid-template-columns: 1fr; } }

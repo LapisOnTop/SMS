@@ -1,0 +1,15 @@
+# IDE files
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Project specific
+/vendor/
+node_modules/
+.env
+
+# XAMPP specific
+/temp/

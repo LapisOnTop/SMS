@@ -1,0 +1,122 @@
+.terms-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.terms-modal.is-open {
+	display: flex;
+}
+
+.terms-modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(20, 28, 42, 0.35);
+}
+
+.terms-modal-panel {
+	position: relative;
+	width: min(680px, 100%);
+	max-height: 90vh;
+	overflow: auto;
+	border-radius: 14px;
+	background: white;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+	color: #333;
+}
+
+.terms-header {
+	padding: 24px 28px 18px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	text-align: center;
+}
+
+.terms-header i {
+	font-size: 30px;
+	margin-bottom: 10px;
+	color: #1e2532;
+}
+
+.terms-header h2 {
+	font-size: 30px;
+	margin-bottom: 6px;
+	color: #1e2532;
+	font-weight: 700;
+}
+
+.terms-header p {
+	color: #666;
+	font-weight: 500;
+}
+
+.terms-content {
+	padding: 24px 28px;
+}
+
+.terms-content p {
+	line-height: 1.8;
+	margin-bottom: 14px;
+	font-size: 15px;
+	color: #555;
+}
+
+.terms-actions {
+	padding: 0 28px 24px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+}
+
+.terms-actions .btn-secondary,
+.terms-actions .btn-primary {
+	border: 0;
+	border-radius: 999px;
+	padding: 12px 24px;
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	font-family: 'Poppins', sans-serif;
+}
+
+.terms-actions .btn-secondary {
+	background: #f0f0f0;
+	color: #333;
+}
+
+.terms-actions .btn-primary {
+	background: #1e2532;
+	color: #ffffff;
+}
+
+.terms-actions .btn-secondary:hover,
+.terms-actions .btn-primary:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+body.modal-open {
+	overflow: hidden;
+}
+
+body.modal-open header,
+body.modal-open main,
+body.modal-open footer {
+	filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+	.terms-modal-panel {
+		max-height: 92vh;
+	}
+
+	.terms-header h2 {
+		font-size: 24px;
+	}
+}

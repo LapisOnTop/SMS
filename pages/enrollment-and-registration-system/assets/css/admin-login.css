@@ -1,0 +1,247 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #e0e0e0, #cfcfcf);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #333;
+}
+
+.login-shell {
+	width: 100%;
+	padding: 20px;
+}
+
+.login-card {
+	background: white;
+	border-radius: 18px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	max-width: 480px;
+	margin: 0 auto;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.login-hero {
+	padding: 40px 30px;
+	text-align: center;
+	background: linear-gradient(180deg, #f5f5f5, #efefef);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.hero-icon {
+	width: 70px;
+	height: 70px;
+	margin: 0 auto 20px;
+	border-radius: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #1e2532, #1a1f2a);
+	color: white;
+	font-size: 2rem;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.login-hero h1 {
+	font-size: 1.8rem;
+	margin-bottom: 10px;
+	color: #1e2532;
+	font-weight: 700;
+}
+
+.login-hero p {
+	color: #666;
+	font-size: 0.95rem;
+	margin: 0;
+}
+
+.role-badge {
+	padding: 16px 30px;
+	background: #f4f7ff;
+	border-bottom: 1px solid #e2e8f5;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.badge-label {
+	font-size: 0.85rem;
+	color: #666;
+	font-weight: 500;
+}
+
+.badge-value {
+	display: inline-block;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+
+.badge-value.admin {
+	background: rgba(63, 105, 255, 0.1);
+	color: #3f69ff;
+}
+
+.change-role-btn {
+	padding: 8px 12px;
+	background: white;
+	border: 1px solid #dce3f2;
+	border-radius: 6px;
+	color: #666;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 0.9rem;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.change-role-btn:hover {
+	background: #f4f7ff;
+	border-color: #3f69ff;
+	color: #3f69ff;
+}
+
+.login-form {
+	padding: 40px 30px;
+}
+
+.field {
+	margin-bottom: 24px;
+}
+
+.field label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	font-size: 0.95rem;
+	color: #333;
+}
+
+.field input {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid #dce3f2;
+	border-radius: 8px;
+	font-size: 0.95rem;
+	font-family: 'Poppins', sans-serif;
+	transition: all 0.2s ease;
+}
+
+.field input:focus {
+	outline: none;
+	border-color: #3f69ff;
+	box-shadow: 0 0 0 3px rgba(63, 105, 255, 0.1);
+}
+
+.password-row {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.password-row input {
+	width: 100%;
+}
+
+.toggle-password {
+	position: absolute;
+	right: 14px;
+	background: none;
+	border: none;
+	color: #999;
+	cursor: pointer;
+	padding: 0;
+	font-size: 0.95rem;
+	transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+	color: #3f69ff;
+}
+
+.field-error {
+	margin-top: 6px;
+	font-size: 0.8rem;
+	color: #ef4444;
+	display: none;
+}
+
+.field-error.show {
+	display: block;
+}
+
+.field.error input {
+	border-color: #ef4444;
+	background-color: rgba(239, 68, 68, 0.05);
+}
+
+.btn-signin {
+	width: 100%;
+	padding: 14px;
+	background: linear-gradient(135deg, #1e2532, #1a1f2a);
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 700;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.btn-signin:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 16px rgba(30, 37, 50, 0.35);
+}
+
+.btn-signin:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.login-footnote {
+	padding: 20px 30px;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.04);
+	border-top: 1px solid rgba(255, 255, 255, 0.06);
+	font-size: 0.85rem;
+	color: #666;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+@media (max-width: 480px) {
+	.login-card {
+		border-radius: 16px;
+	}
+
+	.login-hero {
+		padding: 32px 24px;
+	}
+
+	.login-form {
+		padding: 30px 24px;
+	}
+
+	.login-footnote {
+		padding: 16px 24px;
+	}
+}

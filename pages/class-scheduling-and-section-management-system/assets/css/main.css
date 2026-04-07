@@ -1,0 +1,336 @@
+/* ================================================================
+   SMS — Class Scheduling & Section Management
+   FILE: assets/css/main.css
+   Design: 1-to-1 class names from Student Information Management System
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+/* ── ROOT — exact variables from SIM ───────────────────── */
+:root {
+    --sidebar-bg:  #1e2532;
+    --active-blue: #2563eb;
+    --bg-light:    #f3f4f6;
+    --text-dark:   #1f2937;
+    --text-gray:   #6b7280;
+    --card-gold:   #fbbf24;
+    --card-blue:   #0f172a;
+    --card-red:    #dc2626;
+
+    /* Extra palette used in components */
+    --green:        #10b981;
+    --green-pale:   #ecfdf5;
+    --green-border: #a7f3d0;
+    --red:          #ef4444;
+    --red-pale:     #fef2f2;
+    --red-border:   #fecaca;
+    --yellow:       #f59e0b;
+    --yellow-pale:  #fffbeb;
+    --yellow-border:#fde68a;
+    --teal:         #0891b2;
+    --teal-pale:    #f0f9ff;
+    --teal-border:  #bae6fd;
+    --purple:       #6366f1;
+    --purple-pale:  #eef2ff;
+    --purple-border:#c7d2fe;
+
+    --white:     #ffffff;
+    --gray-50:   #f9fafb;
+    --gray-100:  #f3f4f6;
+    --gray-200:  #e5e7eb;
+    --gray-300:  #d1d5db;
+    --gray-400:  #9ca3af;
+    --text-400:  #9ca3af;
+    --text-500:  #6b7280;
+    --text-700:  #374151;
+    --text-900:  #1f2937;
+
+    --blue-pale:   #eff6ff;
+    --blue-border: #bfdbfe;
+
+    --font:     'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+
+    --sidebar-w: 260px;
+    --radius-sm: 6px;
+    --radius:    8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+
+    --shadow-xs: 0 1px 2px rgba(0,0,0,.05);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -2px rgba(0,0,0,.05);
+    --ease: cubic-bezier(.4,0,.2,1);
+}
+
+/* ── RESET — exact from SIM ─────────────────────────────── */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+
+body {
+    display: flex;
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ════════════════════════════════════════════════════════════
+   SIDEBAR — exact class names: .sidebar .brand .menu-category .menu-item
+   ════════════════════════════════════════════════════════════ */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: #9ca3af;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    flex-shrink: 0;
+    height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    overflow-y: auto;
+    z-index: 200;
+    animation: fadeInPage 0.3s ease-out;
+}
+.sidebar::-webkit-scrollbar { width: 2px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+
+/* exact from SIM .brand */
+.brand {
+    padding: 0 20px 30px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* exact from SIM .menu-category */
+.menu-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 10px 25px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 15px;
+    color: #6b7280;
+}
+
+/* exact from SIM .menu-item */
+.menu-item {
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #9ca3af;
+}
+.menu-item:hover { color: white; }
+
+/* exact from SIM .menu-item.active */
+.menu-item.active {
+    background-color: var(--active-blue);
+    color: white;
+    border-right: 4px solid var(--card-gold);
+    font-weight: 500;
+}
+
+/* ── alias nav-link → menu-item for JS compatibility ── */
+.nav-link { padding:12px 25px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:0.2s; font-size:0.9rem; text-decoration:none; color:#9ca3af; }
+.nav-link:hover { color: white; }
+.nav-link.active { background-color:var(--active-blue); color:white; border-right:4px solid var(--card-gold); font-weight:500; }
+
+/* ════════════════════════════════════════════════════════════
+   MAIN CONTENT — exact from SIM .main-content
+   ════════════════════════════════════════════════════════════ */
+.main-content {
+    margin-left: 260px;
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+    animation: fadeInPage 0.3s ease-out;
+    min-height: 100vh;
+}
+
+/* ── Page pages still use .main (for showPage JS compatibility) ── */
+.main { margin-left: 260px; flex-grow: 1; overflow-y: auto; animation: fadeInPage 0.3s ease-out; min-height: 100vh; }
+
+/* ════════════════════════════════════════════════════════════
+   BREADCRUMBS — exact from SIM
+   ════════════════════════════════════════════════════════════ */
+.breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+    width: 100%;
+    color: var(--text-gray);
+}
+
+/* ════════════════════════════════════════════════════════════
+   TOPBAR — used within breadcrumbs row
+   ════════════════════════════════════════════════════════════ */
+.topbar-search {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 7px 12px;
+    transition: 0.2s;
+}
+.topbar-search:focus-within {
+    border-color: var(--active-blue);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.topbar-search input {
+    background: none; border: none; outline: none;
+    color: var(--text-dark); font-size: 0.85rem;
+    width: 100%; font-family: var(--font);
+}
+.topbar-search input::placeholder { color: var(--gray-400); }
+.topbar-search .si { color: var(--gray-400); font-size: 0.82rem; flex-shrink: 0; }
+
+/* Term badge */
+.term-badge {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 6px 12px;
+    font-size: 0.82rem; color: var(--text-gray);
+    white-space: nowrap; box-shadow: var(--shadow-xs);
+}
+.term-badge strong { color: var(--active-blue); font-weight: 600; }
+.term-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+    animation: pulse 2s infinite;
+}
+
+/* User profile dropdown area */
+.user-profile { margin-left: 0; position: relative; cursor: pointer; }
+.user-avatar {
+    width: 32px; height: 32px; background: var(--active-blue);
+    color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; overflow: hidden;
+    border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.profile-dropdown {
+    position: absolute; top: 40px; right: 0;
+    background: white; border-radius: var(--radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+    width: 160px; display: none; z-index: 100;
+    overflow: hidden; border: 1px solid var(--gray-200);
+}
+.profile-dropdown.show { display: block; }
+.dropdown-item {
+    padding: 10px 15px; font-size: 0.9rem;
+    color: var(--text-dark); cursor: pointer;
+    border-bottom: 1px solid #f3f4f6; transition: 0.15s;
+}
+.dropdown-item:hover { background-color: #f9fafb; }
+.dropdown-item:last-child { border-bottom: none; }
+
+/* Support btn */
+.support-btn {
+    background: white; border: 1px solid #e5e7eb;
+    padding: 8px 16px; border-radius: var(--radius);
+    font-size: 0.85rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    cursor: pointer; box-shadow: var(--shadow-xs);
+    transition: 0.2s; color: var(--text-dark);
+    text-decoration: none;
+}
+.support-btn:hover { background: #f9fafb; border-color: #d1d5db; }
+
+/* ════════════════════════════════════════════════════════════
+   PAGE SHELL — .page wraps each page section
+   ════════════════════════════════════════════════════════════ */
+.page { display: none; }
+.page.active { display: block; }
+.content { /* already inside .main-content which has padding:30px */ }
+
+/* page-title / subtitle — exact from SIM */
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+.page-title span { color: var(--active-blue); }
+
+.subtitle {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+/* page-header (SMS specific) */
+.page-header {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 14px;
+    flex-wrap: wrap; margin-bottom: 5px;
+}
+.page-header-left h1 {
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--text-dark); margin-bottom: 5px; line-height: 1.2;
+}
+.page-header-left h1 span { color: var(--active-blue); }
+.page-header-left p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 30px; }
+.page-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* ── ANIMATIONS — exact from SIM ─────────────────────── */
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
+    50%      { box-shadow: 0 0 0 5px rgba(16,185,129,0.05); }
+}
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%,60% { transform: translateX(-6px); }
+    40%,80% { transform: translateX(6px); }
+}
+@keyframes slideInUp {
+    from { opacity:0; transform:translate(-50%,-40%) scale(0.9); }
+    to   { opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+@keyframes slideOutDown {
+    from { opacity:1; transform:translate(-50%,-50%) scale(1); }
+    to   { opacity:0; transform:translate(-50%,-40%) scale(0.9); }
+}
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+@keyframes fadeUp  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+.fade-up   { animation: fadeUp 0.3s ease both; }
+.fade-up-1 { animation-delay: 0.05s; }
+.fade-up-2 { animation-delay: 0.10s; }
+.fade-up-3 { animation-delay: 0.15s; }
+.fade-up-4 { animation-delay: 0.20s; }
+
+.popup-enter  { animation: slideInUp 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.popup-exit   { animation: slideOutDown 0.2s ease-in-out; }
+.overlay-enter{ animation: fadeIn 0.3s ease-out; }
+.overlay-exit { animation: fadeOut 0.2s ease-out; }
+.shake-animation { animation: shake 0.6s ease-in-out; }
+
+/* ── Responsive ── */
+@media (max-width:900px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.28s var(--ease); }
+    .sidebar.open { transform: none; }
+    .main-content, .main { margin-left: 0; }
+}
+@media (max-width:560px) {
+    .main-content { padding: 16px; }
+    .topbar-search { display: none; }
+}
