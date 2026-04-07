@@ -4,6 +4,8 @@
  * Destroys session and redirects to role selection
  */
 
+require_once __DIR__ . '/../config/app.php';
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
 }
@@ -28,6 +30,6 @@ if (ini_get('session.use_cookies')) {
 session_destroy();
 
 // Redirect to the main landing (works for all subsystems)
-header('Location: /SMS/index.php');
+header('Location: ' . sms_url('index.php'));
 exit;
 ?>
