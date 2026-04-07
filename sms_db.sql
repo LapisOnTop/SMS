@@ -711,7 +711,7 @@ INSERT INTO `users` (`user_id`, `username`, `password_hash`, `role_id`, `is_acti
 (1, 'Student1', 'Student1', 1, 1, '2026-04-04 20:00:45'),
 (2, 'Admin1', 'Admin1', 2, 1, '2026-04-04 20:00:45'),
 (3, 'Cashier1', 'Cashier1', 3, 1, '2026-04-04 20:01:17'),
-(4, 'Registrar1', '$2y$10$2NUeYPjvQqUcDwmpz9aZn.MW.1UqFdzLCYYM.ju.qzAeCFMZf10K.', 4, 1, '2026-04-04 20:01:17'),
+(4, 'Registrar1', '$2y$10$lGf5BjZxPfKZkkJPZBaQAeb2q.OhMBMy1tA7qFWl8sl0OkSyyCWTm', 4, 1, '2026-04-04 20:01:17'),
 (5, 'Faculty1', 'Faculty1', 5, 1, '2026-04-05 05:12:39'),
 (6, '260000008', '260000008', 1, 1, '2026-04-06 16:49:29');
 
